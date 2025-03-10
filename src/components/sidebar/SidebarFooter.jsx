@@ -20,6 +20,29 @@ const SidebarFooter = () => {
             verticalAlign: "middle",
             color: "tomato",
             height: 20,
+            animation: "heartBeat 1.5s ease infinite",
+            "@keyframes heartBeat": {
+              "0%": {
+                transform: "scale(1)",
+                color: "tomato",
+              },
+              "25%": {
+                transform: "scale(1.2)",
+                color: "pink",
+              },
+              "50%": {
+                transform: "scale(1)",
+                color: "red",
+              },
+              "75%": {
+                transform: "scale(1.2)",
+                color: "crimson",
+              },
+              "100%": {
+                transform: "scale(1)",
+                color: "tomato",
+              },
+            },
           }}
         />
       </Typography>
@@ -31,5 +54,4 @@ const SidebarFooter = () => {
     </Box>
   );
 };
-
 export default SidebarFooter;

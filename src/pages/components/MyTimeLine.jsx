@@ -23,7 +23,7 @@ const MyTimeLine = ({ position, color, icon, data }) => {
         <Slide
           direction="up"
           in={loading}
-          style={{ transitionDelay: loading ? `${index + 1}99ms` : "0ms" }}
+          style={{ transitionDelay: loading ? `${index + 3}99ms` : "0ms" }}
         >
           <TimelineItem key={index}>
             <TimelineSeparator>
