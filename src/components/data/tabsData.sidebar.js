@@ -2,11 +2,11 @@ import {
     HomeRounded,
     FaceRounded,
     TextSnippetRounded,
-    TerminalRounded,
     MessageRounded,
     ConnectWithoutContactRounded,
+    SchoolRounded,
 } from "@mui/icons-material";
-import { AboutMe, Home, Resume } from "../../pages";
+import { AboutMe, Courses, Home, Resume } from "../../pages";
 export const tabProps = (index) => {
     return {
         id: `sidebar-tab-${index}`,
@@ -30,8 +30,8 @@ export const tabs = [
         ...tabProps(2),
     },
     {
-        label: "نمونه کارها",
-        icon: <TerminalRounded />,
+        label: "دوره های من",
+        icon: <SchoolRounded />,
         ...tabProps(3),
     },
     {
@@ -50,7 +50,7 @@ export const tabData = [
     { index: 0, title: "صفحه اصلی", img: "bg01.jpeg", component: <Home /> },
     { index: 1, title: "درباره من", img: "bg02.jpeg", component: <AboutMe /> },
     { index: 2, title: "رزومه من", img: "bg03.jpeg", component: <Resume /> },
-    { index: 3, title: "نمونه کارها", img: "bg01.jpeg", component: <Home /> },
+    { index: 3, title: "دوره های من", img: "bg01.jpeg", component: <Courses /> },
     { index: 4, title: "نظرات دانشجویان", img: "bg02.jpeg", component: <Home /> },
     { index: 5, title: "ارتباط با من", img: "bg03.jpeg", component: <Home /> },
 ];
