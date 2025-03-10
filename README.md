@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# پروژه اسکنر
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+این پروژه یک برنامه اسکنر با قابلیت‌های پیشرفته را پیاده‌سازی می‌کند.
 
-## Available Scripts
+## نمای کلی
 
-In the project directory, you can run:
+یک راه حل جامع اسکن که قابلیت‌های دیجیتال‌سازی و پردازش اسناد با کیفیت بالا را ارائه می‌دهد.
 
-### `npm start`
+## ویژگی‌ها
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- اسکن با وضوح بالا
+- پشتیبانی از فرمت‌های مختلف (PDF، JPG، PNG)
+- تشخیص نوری کاراکتر (OCR)
+- پردازش دسته‌ای
+- تنظیمات سفارشی اسکن
+- طراحی متریال دیزاین
+- افکت‌ها و انیمیشن‌های متریال
+- رابط کاربری مدرن و واکنش‌گرا
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## تصاویر
 
-### `npm test`
+### رابط اصلی
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![رابط اصلی اسکنر](./imageReadme/2025-03-10_12-34-33.jpg)
 
-### `npm run build`
+### فرآیند اسکن
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![فرآیند اسکن](./imageReadme/2025-03-10_12-34-50.jpg)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### نمایش نتایج
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![نمایش نتایج](./imageReadme/2025-03-10_12-35-06.jpg)
 
-### `npm run eject`
+## نصب
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. مخزن را کلون کنید
+2. وابستگی‌های مورد نیاز را نصب کنید
+3. برنامه را اجرا کنید
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## نحوه استفاده
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. تنظیمات اسکن را انتخاب کنید
+2. سند را در اسکنر قرار دهید
+3. دکمه اسکن را کلیک کنید
+4. نتایج را ذخیره یا پردازش کنید
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## تکنولوژی‌های استفاده شده
 
-## Learn More
+- Java
+- JavaFX
+- Apache PDFBox
+- Tesseract OCR
+- Material Design Components
+- Material Effects & Animations
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## مجوز
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+این پروژه تحت مجوز MIT منتشر شده است - برای جزئیات بیشتر فایل LICENSE را مشاهده کنید.
