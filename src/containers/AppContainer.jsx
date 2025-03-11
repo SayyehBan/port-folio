@@ -15,8 +15,12 @@ import { DrawerActionButton } from "../components/drawer";
 function AppContainer() {
   const [pageNumber, setPageNumber] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [mode, setMode] = useState("light");
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+  useEffect(() => {
+    setMode("dark");
+  }, []);
   useEffect(() => {
     if (isMdUp) {
       setDrawerOpen(false);
@@ -25,12 +29,20 @@ function AppContainer() {
   const handlePageNumber = (event, newPage) => {
     setPageNumber(newPage);
   };
-
+  const handleThemeChange = () => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  };
   return (
     <MainContext.Provider
-      value={{ pageNumber, handlePageNumber, drawerOpen, setDrawerOpen }}
+      value={{
+        pageNumber,
+        handlePageNumber,
+        handleThemeChange,
+        drawerOpen,
+        setDrawerOpen,
+      }}
     >
-      <MainLayout>
+      <MainLayout mode={mode}>
         <SidebarContainer>
           <Sidebar />
         </SidebarContainer>

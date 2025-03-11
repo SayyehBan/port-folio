@@ -2,7 +2,8 @@ import { createContext } from "react";
 
 export default createContext({
     pageNumber: 0,
-    handlePageNumber: () => {},
+    handlePageNumber: () => { },
     drawerOpen: false,
-    setDrawerOpen: () => {},
+    setDrawerOpen: () => { },
+    handleThemeChange: () => { }
 });
