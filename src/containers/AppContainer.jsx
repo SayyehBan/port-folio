@@ -18,8 +18,9 @@ function AppContainer() {
   const [mode, setMode] = useState("light");
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const prefersLightMode = useMediaQuery("(prefers-color-scheme: light)");
   useEffect(() => {
-    setMode("dark");
+    setMode(prefersLightMode ? "light" : "dark");
   }, []);
   useEffect(() => {
     if (isMdUp) {
