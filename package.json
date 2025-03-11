@@ -22,9 +22,11 @@
     "react-random-reveal": "^2.0.1",
     "react-router-dom": "^7.2.0",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.30.3",
     "react-swipeable-views": "^0.14.0",
     "react-text-transition": "^3.1.0",
     "react-typed": "^2.0.12",
+    "slick-carousel": "^1.8.1",
     "stylis": "^4.3.6",
     "stylis-plugin-rtl": "2.0.2",
     "web-vitals": "^4.2.4"
