@@ -1,4 +1,4 @@
-import { Typography, Container, Box } from "@mui/material";
+import { Typography, Container, Box, useTheme } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { Typed } from "react-typed";
 import TextTransition, { presets } from "react-text-transition";
@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const nameEl = useRef(null);
+  const theme = useTheme();
   const [index, setIndex] = useState(0);
   const TEXTS = [
     "مدرس برنامه نویسی",
@@ -57,7 +58,7 @@ const Home = () => {
         justifyContent: "center",
         alignItems: "center",
         position: "relative",
-        background: "linear-gradient(45deg, #1a237e 30%, #311b92 90%)",
+        background: theme.palette.background.default,
       }}
     >
       <Helmet>
@@ -76,7 +77,7 @@ const Home = () => {
           ref={nameEl}
           variant="h2"
           sx={{
-            color: "tomato",
+            color: theme.palette.text.primary,
             fontWeight: "bold",
             marginBottom: 3,
             textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
@@ -87,7 +88,7 @@ const Home = () => {
         <Typography
           variant="h3"
           sx={{
-            color: "whitesmoke",
+            color: theme.palette.text.primary,
             textDecorationColor: "tomato",
             textDecorationThickness: "4px",
             textUnderlineOffset: "8px",
@@ -100,7 +101,7 @@ const Home = () => {
           <Typography
             variant="h4"
             sx={{
-              color: "whitesmoke",
+              color: theme.palette.text.primary,
               mt: 4,
               mr: 1,
               textAlign: "center",

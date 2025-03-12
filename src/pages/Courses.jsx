@@ -8,6 +8,7 @@ import {
   Grid2,
   Slide,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import ChipInfo from "./components/ChipInfo";
@@ -24,7 +25,7 @@ const truncateText = (text, maxLength) => {
 
 const Courses = () => {
   const [loading, setLoading] = useState(false);
-
+  const theme = useTheme();
   useEffect(() => {
     setLoading(false);
     const timer = setTimeout(() => setLoading(true), 300);
@@ -35,7 +36,7 @@ const Courses = () => {
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundColor: "#f4f4f9",
+        backgroundColor: theme.palette.background.default,
         padding: { xs: 2, md: 4 },
         direction: "rtl",
       }}
@@ -46,7 +47,7 @@ const Courses = () => {
           maxWidth: 1400,
           margin: "0 auto",
           borderRadius: { xs: 4, md: 8 },
-          bgcolor: "rgba(255, 255, 255, 0.95)",
+          bgcolor: theme.palette.background.paper,
           backdropFilter: "blur(20px)",
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
         }}
@@ -109,7 +110,7 @@ const Courses = () => {
                         <Typography
                           variant="h6"
                           textAlign="center"
-                          color="white"
+                          color={theme.palette.text.primary}
                           gutterBottom
                         >
                           {course.title}
@@ -117,7 +118,7 @@ const Courses = () => {
                         <Typography
                           variant="body2"
                           textAlign="center"
-                          color="rgba(255,255,255,0.8)"
+                          color={theme.palette.text.secondary}
                           sx={{
                             mb: 1,
                             direction: "ltr",

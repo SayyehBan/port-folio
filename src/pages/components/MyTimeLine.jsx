@@ -1,4 +1,4 @@
-import { Box, Slide, Typography } from "@mui/material";
+import { Box, Slide, Typography, useTheme } from "@mui/material";
 
 import {
   Timeline,
@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 const MyTimeLine = ({ position, color, icon, data }) => {
   const [loading, setLoading] = useState(false);
+  const theme = useTheme();
   useEffect(() => {
     setLoading(true);
     return () => {
@@ -31,7 +32,7 @@ const MyTimeLine = ({ position, color, icon, data }) => {
                 color={color}
                 sx={{
                   boxShadow: "0 0 8px rgba(0, 188, 212, 0.5)",
-                  backgroundColor: "#fff",
+                  backgroundColor: theme.palette.background.paper,
                 }}
               >
                 {icon}
@@ -45,7 +46,7 @@ const MyTimeLine = ({ position, color, icon, data }) => {
             <TimelineContent sx={{ py: 2 }}>
               <Box
                 sx={{
-                  backgroundColor: "#fff",
+                  backgroundColor: theme.palette.background.paper,
                   padding: 2,
                   borderRadius: 2,
                   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
@@ -58,22 +59,30 @@ const MyTimeLine = ({ position, color, icon, data }) => {
               >
                 <Typography
                   variant="caption"
-                  color="black"
+                  color={theme.palette.text.primary}
                   sx={{ display: "block", mb: 0.5 }}
                 >
                   {item.year}
                 </Typography>
                 <Typography
                   variant="body1"
-                  color="black"
+                  color={theme.palette.text.primary}
                   sx={{ fontWeight: "bold", mb: 0.5 }}
                 >
                   {item.cert}
                 </Typography>
-                <Typography variant="body2" color="black" sx={{ mb: 0.5 }}>
+                <Typography
+                  variant="body2"
+                  color={theme.palette.text.primary}
+                  sx={{ mb: 0.5 }}
+                >
                   {item.major}
                 </Typography>
-                <Typography variant="body2" color="black" sx={{ opacity: 0.8 }}>
+                <Typography
+                  variant="body2"
+                  color={theme.palette.text.secondary}
+                  sx={{ opacity: 0.8 }}
+                >
                   {item.place}
                 </Typography>
               </Box>

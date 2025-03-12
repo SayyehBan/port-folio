@@ -1,10 +1,18 @@
-import { Avatar, Box, Card, CardContent, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import ChipInfo from "./components/ChipInfo";
 import { ForumRounded } from "@mui/icons-material";
 import { userComments } from "../constants/details";
 import Slider from "react-slick";
 const Comments = () => {
+  const theme = useTheme();
   const options = {
     dots: true,
     arrows: false,
@@ -18,7 +26,7 @@ const Comments = () => {
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundColor: "#f4f4f9",
+        backgroundColor: theme.palette.background.default,
         padding: { xs: 2, md: 4 },
         direction: "rtl",
       }}
@@ -29,7 +37,7 @@ const Comments = () => {
           maxWidth: 1200,
           margin: "0 auto",
           borderRadius: { xs: 4, md: 8 },
-          bgcolor: "rgba(255, 255, 255, 0.95)",
+          bgcolor: theme.palette.background.paper,
           backdropFilter: "blur(20px)",
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
         }}
@@ -70,13 +78,17 @@ const Comments = () => {
                       margin: "0 auto",
                     }}
                   />
-                  <Typography variant="body1" textAlign="center" color="black">
+                  <Typography
+                    variant="body1"
+                    textAlign="center"
+                    color={theme.palette.text.primary}
+                  >
                     {comment.fullname}
                   </Typography>
                   <Typography
                     variant="body2"
                     textAlign="center"
-                    color="black"
+                    color={theme.palette.text.primary}
                     sx={{ mb: 2 }}
                   >
                     {comment.jobTitle}
@@ -93,7 +105,7 @@ const Comments = () => {
                       <Typography
                         variant="body2"
                         textAlign="center"
-                        color="black"
+                        color={theme.palette.text.primary}
                       >
                         {comment.comment}
                       </Typography>

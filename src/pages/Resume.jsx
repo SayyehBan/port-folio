@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid2, Box } from "@mui/material";
+import { Card, CardContent, Grid2, Box, useTheme } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import ChipInfo from "./components/ChipInfo";
 import {
@@ -12,11 +12,12 @@ import { devEdu, education, experiences } from "../constants/details";
 import MyTimeLine from "./components/MyTimeLine";
 
 const Resume = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundColor: "#f4f4f9",
+        backgroundColor: theme.palette.background.default,
         padding: { xs: 2, md: 4 },
         direction: "rtl",
       }}
@@ -27,7 +28,8 @@ const Resume = () => {
           maxWidth: 1200,
           margin: "0 auto",
           borderRadius: { xs: 4, md: 8 },
-          bgcolor: "rgba(255, 255, 255, 0.95)",
+          bgcolor: theme.palette.background.paper,
+          color: theme.palette.text.primary,
           backdropFilter: "blur(20px)",
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
         }}
