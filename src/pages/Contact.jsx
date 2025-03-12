@@ -151,12 +151,12 @@ const Contact = () => {
                               color="warning"
                               label={field.label}
                               name={field.name}
-                              variant="outlined"
+                              variant="filled"
                               multiline={field.multiline || false}
                               rows={field.rows || 1}
                               value={formData[field.name]}
                               onChange={handleChange}
-                              dir="ltr"
+                              dir="ltr" // جهت کلی ltr برای هماهنگی با لیبل سمت چپ
                               InputProps={{
                                 startAdornment: field.icon ? (
                                   <InputAdornment position="end">
@@ -169,23 +169,51 @@ const Contact = () => {
                                   borderRadius: "12px",
                                   transition: "all 0.3s ease",
                                   "&:hover": {
-                                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.15)",
+                                    borderColor: theme.palette.text.main,
+                                  },
+                                  "&.Mui-focused": {
+                                    "& .MuiOutlinedInput-notchedOutline": {
+                                      borderLeftWidth: "3px", // خط سمت چپ پررنگ‌تر
+                                      borderLeftColor: theme.palette.text.main,
+                                      borderColor: theme.palette.grey[400],
+                                    },
                                   },
                                   "& input": {
-                                    textAlign: "left",
+                                    textAlign: "right",
                                   },
                                   "& textarea": {
-                                    textAlign: "left",
+                                    textAlign: "right",
                                   },
                                 },
                                 "& .MuiInputLabel-root": {
-                                  right: "30px",
-                                  left: "auto",
-                                  transformOrigin: "top right",
+                                  left: "14px", // لیبل از سمت چپ فاصله بگیره
+                                  right: "auto",
+                                  transformOrigin: "top right", // جهت‌گیری لیبل از چپ به راست
+                                  color: theme.palette.text.secondary,
+                                  "&:not(.Mui-focused)": {
+                                    transform: "translate(14px, 16px) scale(1)", // لیبل تو حالت عادی داخل کادر
+                                  },
                                 },
                                 "& .MuiInputLabel-shrink": {
-                                  transform: "translate(0, -1.5px) scale(0.75)",
+                                  transform:
+                                    "translate(14px, -9px) scale(0.75)", // لیبل وقتی بالا می‌ره
+                                  color: theme.palette.text.main,
                                 },
+                                "& .MuiOutlinedInput-notchedOutline": {
+                                  borderColor: theme.palette.grey[300],
+                                  "& > legend": {
+                                    // تنظیم عرض و موقعیت notch
+                                    marginLeft: "14px", // notch سمت چپ باشه
+                                    textAlign: "left", // تراز متن legend به چپ
+                                  },
+                                },
+                                "& .Mui-focused .MuiOutlinedInput-notchedOutline":
+                                  {
+                                    "& > legend": {
+                                      marginLeft: "14px", // مطمئن می‌شیم موقع فوکوس هم notch سمت چپه
+                                    },
+                                  },
                               }}
                             />
                           </Grid2>
