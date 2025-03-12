@@ -21,8 +21,9 @@ import {
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import worldMap from "../assets/map.svg";
+import { useFormik } from "formik";
+import { validationSchema } from "./validations/contactValidation";
 
-// ثابت‌ها برای مقادیر تکراری
 const FORM_FIELDS = [
   {
     name: "fullname",
@@ -58,27 +59,24 @@ const FORM_FIELDS = [
 const Contact = () => {
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    fullname: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
 
   useEffect(() => {
     setLoading(true);
     return () => setLoading(false);
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
+  const formik = useFormik({
+    initialValues: {
+      fullname: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log("Form submitted:", values);
+    },
+  });
 
   return (
     <Box
@@ -137,7 +135,7 @@ const Contact = () => {
                     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.05)",
                   }}
                 >
-                  <form onSubmit={handleSubmit} autoComplete="off">
+                  <form onSubmit={formik.handleSubmit} autoComplete="off">
                     <CardContent>
                       <Grid2 container spacing={2}>
                         {FORM_FIELDS.map((field) => (
@@ -154,9 +152,18 @@ const Contact = () => {
                               variant="filled"
                               multiline={field.multiline || false}
                               rows={field.rows || 1}
-                              value={formData[field.name]}
-                              onChange={handleChange}
-                              dir="ltr" // جهت کلی ltr برای هماهنگی با لیبل سمت چپ
+                              value={formik.values[field.name]}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                              error={
+                                formik.touched[field.name] &&
+                                Boolean(formik.errors[field.name])
+                              }
+                              helperText={
+                                formik.touched[field.name] &&
+                                formik.errors[field.name]
+                              }
+                              dir="ltr"
                               InputProps={{
                                 startAdornment: field.icon ? (
                                   <InputAdornment position="end">
@@ -174,7 +181,7 @@ const Contact = () => {
                                   },
                                   "&.Mui-focused": {
                                     "& .MuiOutlinedInput-notchedOutline": {
-                                      borderLeftWidth: "3px", // خط سمت چپ پررنگ‌تر
+                                      borderLeftWidth: "3px",
                                       borderLeftColor: theme.palette.text.main,
                                       borderColor: theme.palette.grey[400],
                                     },
@@ -187,31 +194,30 @@ const Contact = () => {
                                   },
                                 },
                                 "& .MuiInputLabel-root": {
-                                  left: "14px", // لیبل از سمت چپ فاصله بگیره
+                                  left: "14px",
                                   right: "auto",
-                                  transformOrigin: "top right", // جهت‌گیری لیبل از چپ به راست
+                                  transformOrigin: "top right",
                                   color: theme.palette.text.secondary,
                                   "&:not(.Mui-focused)": {
-                                    transform: "translate(14px, 16px) scale(1)", // لیبل تو حالت عادی داخل کادر
+                                    transform: "translate(14px, 16px) scale(1)",
                                   },
                                 },
                                 "& .MuiInputLabel-shrink": {
                                   transform:
-                                    "translate(14px, -9px) scale(0.75)", // لیبل وقتی بالا می‌ره
+                                    "translate(14px, -9px) scale(0.75)",
                                   color: theme.palette.text.main,
                                 },
                                 "& .MuiOutlinedInput-notchedOutline": {
                                   borderColor: theme.palette.grey[300],
                                   "& > legend": {
-                                    // تنظیم عرض و موقعیت notch
-                                    marginLeft: "14px", // notch سمت چپ باشه
-                                    textAlign: "left", // تراز متن legend به چپ
+                                    marginLeft: "14px",
+                                    textAlign: "left",
                                   },
                                 },
                                 "& .Mui-focused .MuiOutlinedInput-notchedOutline":
                                   {
                                     "& > legend": {
-                                      marginLeft: "14px", // مطمئن می‌شیم موقع فوکوس هم notch سمت چپه
+                                      marginLeft: "14px",
                                     },
                                   },
                               }}
