@@ -1,49 +1,282 @@
-import { Box, Card, CardContent, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Grid2,
+  InputAdornment,
+  Slide,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import ChipInfo from "./components/ChipInfo";
-import { Face6Rounded } from "@mui/icons-material";
+import {
+  AccountCircle,
+  EmailRounded,
+  Face6Rounded,
+  SubjectRounded,
+} from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import worldMap from "../assets/map.svg";
+
+// ثابت‌ها برای مقادیر تکراری
+const FORM_FIELDS = [
+  {
+    name: "fullname",
+    label: "نام و نام خانوادگی",
+    icon: <Face6Rounded />,
+    xs: 12,
+    md: 6,
+  },
+  {
+    name: "email",
+    label: "آدرس ایمیل",
+    icon: <EmailRounded />,
+    xs: 12,
+    md: 6,
+  },
+  {
+    name: "subject",
+    label: "عنوان",
+    icon: <SubjectRounded />,
+    xs: 12,
+    md: 12,
+  },
+  {
+    name: "message",
+    label: "متن پیام",
+    multiline: true,
+    rows: 6,
+    xs: 12,
+    md: 12,
+  },
+];
 
 const Contact = () => {
   const theme = useTheme();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    setLoading(true);
+    return () => setLoading(false);
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        backgroundColor: theme.palette.background.default,
+        background: `linear-gradient(135deg, ${theme.palette.background.default} 0%, ${theme.palette.background.paper} 100%)`,
         padding: { xs: 2, md: 4 },
-        direction: "rtl",
+        direction: "ltr",
+        display: "flex",
+        alignItems: "center",
       }}
     >
       <Card
-        elevation={5}
+        elevation={8}
         sx={{
           maxWidth: 1400,
           margin: "0 auto",
           borderRadius: { xs: 4, md: 8 },
-          bgcolor: theme.palette.background.paper,
+          bgcolor: "rgba(255, 255, 255, 0.9)",
           backdropFilter: "blur(20px)",
-          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
+          boxShadow: "0 12px 40px rgba(31, 38, 135, 0.2)",
+          overflow: "hidden",
         }}
       >
         <Helmet>
           <title>وب سایت شخصی کوروش هخامنشی | ارتباط با ما</title>
         </Helmet>
-        <CardContent>
-          <Box sx={{ textAlign: "center", mb: 6 }}>
+        <CardContent sx={{ p: { xs: 2, md: 4 } }}>
+          <Box sx={{ textAlign: "center", mb: 5 }}>
             <ChipInfo
-              color="success"
-              icon={<Face6Rounded />}
+              color="warning"
+              icon={<AccountCircle />}
               title="ارتباط با من"
               sx={{
-                fontSize: "1.2rem",
+                fontSize: "1.3rem",
                 fontWeight: "bold",
                 color: theme.palette.text.primary,
+                borderRadius: "16px",
+                px: 3,
+                py: 1,
               }}
             />
           </Box>
+          <Grid2 container spacing={3}>
+            <Slide
+              direction="up"
+              in={loading}
+              style={{ transitionDelay: loading ? "200ms" : "0ms" }}
+            >
+              <Grid2 size={{ xs: 12, md: 8 }}>
+                <Card
+                  sx={{
+                    p: 2,
+                    bgcolor: theme.palette.background.paper,
+                    borderRadius: 4,
+                    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.05)",
+                  }}
+                >
+                  <form onSubmit={handleSubmit} autoComplete="off">
+                    <CardContent>
+                      <Grid2 container spacing={2}>
+                        {FORM_FIELDS.map((field) => (
+                          <Grid2
+                            size={{ xs: field.xs, md: field.md }}
+                            key={field.name}
+                          >
+                            <TextField
+                              fullWidth
+                              size="small"
+                              color="warning"
+                              label={field.label}
+                              name={field.name}
+                              variant="outlined"
+                              multiline={field.multiline || false}
+                              rows={field.rows || 1}
+                              value={formData[field.name]}
+                              onChange={handleChange}
+                              dir="ltr"
+                              InputProps={{
+                                startAdornment: field.icon ? (
+                                  <InputAdornment position="end">
+                                    {field.icon}
+                                  </InputAdornment>
+                                ) : null,
+                              }}
+                              sx={{
+                                "& .MuiOutlinedInput-root": {
+                                  borderRadius: "12px",
+                                  transition: "all 0.3s ease",
+                                  "&:hover": {
+                                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                                  },
+                                  "& input": {
+                                    textAlign: "left",
+                                  },
+                                  "& textarea": {
+                                    textAlign: "left",
+                                  },
+                                },
+                                "& .MuiInputLabel-root": {
+                                  right: "30px",
+                                  left: "auto",
+                                  transformOrigin: "top right",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                  transform: "translate(0, -1.5px) scale(0.75)",
+                                },
+                              }}
+                            />
+                          </Grid2>
+                        ))}
+                      </Grid2>
+                    </CardContent>
+                    <CardActions sx={{ justifyContent: "center", mt: 2 }}>
+                      <Button
+                        type="submit"
+                        color="success"
+                        variant="contained"
+                        sx={{
+                          borderRadius: "12px",
+                          px: 4,
+                          py: 1,
+                          fontWeight: "bold",
+                          boxShadow: "0 4px 15px rgba(0, 128, 0, 0.3)",
+                          "&:hover": {
+                            boxShadow: "0 6px 20px rgba(0, 128, 0, 0.4)",
+                            transform: "translateY(-2px)",
+                          },
+                          transition: "all 0.3s ease",
+                        }}
+                      >
+                        ارسال کن
+                      </Button>
+                    </CardActions>
+                  </form>
+                </Card>
+              </Grid2>
+            </Slide>
+            <Slide
+              direction="up"
+              in={loading}
+              style={{ transitionDelay: loading ? "200ms" : "0ms" }}
+            >
+              <Grid2
+                size={{ xs: 0, sm: 0, md: 4 }}
+                sx={{
+                  textAlign: "center",
+                  backgroundImage: `url(${worldMap})`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  backgroundSize: "contain",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  p: 2,
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  color="text.primary"
+                  sx={{
+                    fontFamily: "vazir",
+                    fontWeight: "bold",
+                    mt: 4,
+                    display: { xs: "none", sm: "none", md: "block" },
+                  }}
+                >
+                  بیا در مورد همه چیز باهم صحبت کنیم
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    mt: 2,
+                    display: { xs: "none", sm: "none", md: "block" },
+                  }}
+                >
+                  👋{" "}
+                  <a
+                    href="mailto:younes.gh@chmail.ir"
+                    style={{
+                      color: theme.palette.warning.main,
+                      textDecoration: "none",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    ایمیل
+                  </a>{" "}
+                  بزن به من
+                </Typography>
+              </Grid2>
+            </Slide>
+          </Grid2>
         </CardContent>
       </Card>
     </Box>
   );
 };
+
 export default Contact;
