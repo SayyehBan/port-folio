@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import worldMap from "../assets/map.svg";
 import { useFormik } from "formik";
 import { validationSchema } from "./validations/contactValidation";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const FORM_FIELDS = [
   {
@@ -59,6 +60,10 @@ const FORM_FIELDS = [
 const Contact = () => {
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
+  function ReCAPTCHAonFunchtion(value) {
+    formik.setFieldValue("recaptcha", value);
+    console.log("Captcha value:", value);
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -71,6 +76,7 @@ const Contact = () => {
       email: "",
       subject: "",
       message: "",
+      recaptcha: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -227,10 +233,23 @@ const Contact = () => {
                       </Grid2>
                     </CardContent>
                     <CardActions sx={{ justifyContent: "center", mt: 2 }}>
+                      <ReCAPTCHA
+                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        theme={theme.palette.mode}
+                        hl="fa"
+                        onChange={ReCAPTCHAonFunchtion}
+                      />
+                      {formik.touched.recaptcha && formik.errors.recaptcha && (
+                        <Typography color="error" variant="caption">
+                          {formik.errors.recaptcha}
+                        </Typography>
+                      )}
+                      <p />
                       <Button
                         type="submit"
                         color="success"
                         variant="contained"
+                        disabled={!formik.values.recaptcha}
                         sx={{
                           borderRadius: "12px",
                           px: 4,

@@ -12,4 +12,5 @@ export const validationSchema = Yup.object({
     message: Yup.string()
         .required("پیام الزامی است")
         .min(10, "پیام باید حداقل 10 کاراکتر باشد"),
+    recaptcha: Yup.string().required("کپچا الزامی است"),
 });
